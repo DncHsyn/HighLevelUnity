@@ -1,14 +1,14 @@
-using UnityEngine;
+    using UnityEngine;
 
-public class PlayerAbilityInput : MonoBehaviour
-{
-    [SerializeField] private AbilityController controller;
-    
-    private void Update()
+    public class PlayerAbilityInput : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        [SerializeField] private AbilityController controller;
+        
+        private void Update()
         {
-            controller.Use(0);
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                controller.Use(0);
+            }
         }
     }
-}
