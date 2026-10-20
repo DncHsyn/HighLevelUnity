@@ -11,9 +11,9 @@ public class EnemyDeadState : EnemyState
     {
         Debug.Log("Enemy: DEAD");
 
-        Object.Destroy(
-            enemy.gameObject,
-            2f);
+        enemy.StopMoving();
+
+        Object.Destroy(enemy.gameObject, 2f);
     }
 
     public override void Tick()

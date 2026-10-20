@@ -1,3 +1,4 @@
+
 public abstract class EnemyState : IEnemyState
 {
     protected EnemyAIController enemy;

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemyFleeState : EnemyState
 {
+    private float fleeTimer;
+
     public EnemyFleeState(
         EnemyAIController enemy) : base(enemy)
     {
@@ -10,6 +12,8 @@ public class EnemyFleeState : EnemyState
     public override void Enter()
     {
         Debug.Log("Enemy: FLEE");
+
+        fleeTimer = 0f;
     }
 
     public override void Tick()
@@ -19,13 +23,21 @@ public class EnemyFleeState : EnemyState
 
         if (!enemy.ShouldFlee)
         {
-            enemy.ChangeState(enemy.IdleState);
+            enemy.ChangeState(enemy.PatrolState);
             return;
         }
 
-        if (enemy.CanSeePlayer)
+        fleeTimer -= Time.deltaTime;
+
+        if (fleeTimer <= 0f)
         {
-            enemy.MoveAwayFromPlayer();
+            enemy.FleeFromPlayer();
+            fleeTimer = 1f;
         }
+    }
+
+    public override void Exit()
+    {
+        enemy.StopMoving();
     }
 }

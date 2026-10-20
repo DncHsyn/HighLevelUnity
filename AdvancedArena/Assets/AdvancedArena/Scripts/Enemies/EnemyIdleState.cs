@@ -10,19 +10,11 @@ public class EnemyIdleState : EnemyState
     public override void Enter()
     {
         Debug.Log("Enemy: IDLE");
+        enemy.StopMoving();
     }
 
     public override void Tick()
     {
-        if (enemy.IsDead)
-            return;
-
-        if (enemy.ShouldFlee)
-        {
-            enemy.ChangeState(enemy.FleeState);
-            return;
-        }
-
         if (enemy.CanSeePlayer)
         {
             enemy.ChangeState(enemy.ChaseState);

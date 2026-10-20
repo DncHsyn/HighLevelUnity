@@ -13,6 +13,7 @@ public class EnemyAttackState : EnemyState
     {
         Debug.Log("Enemy: ATTACK");
 
+        enemy.StopMoving();
         attackTimer = 0f;
     }
 
@@ -24,6 +25,12 @@ public class EnemyAttackState : EnemyState
         if (enemy.ShouldFlee)
         {
             enemy.ChangeState(enemy.FleeState);
+            return;
+        }
+
+        if (!enemy.CanSeePlayer)
+        {
+            enemy.ChangeState(enemy.SearchState);
             return;
         }
 

@@ -25,7 +25,7 @@ public class EnemyChaseState : EnemyState
 
         if (!enemy.CanSeePlayer)
         {
-            enemy.ChangeState(enemy.IdleState);
+            enemy.ChangeState(enemy.SearchState);
             return;
         }
 
@@ -35,6 +35,11 @@ public class EnemyChaseState : EnemyState
             return;
         }
 
-        enemy.MoveTowardsPlayer();
+        enemy.MoveTo(enemy.Player.position);
+    }
+
+    public override void Exit()
+    {
+        enemy.StopMoving();
     }
 }
